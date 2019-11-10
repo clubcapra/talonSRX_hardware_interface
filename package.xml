@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<package>
+    <name>talonSRX_hardware_interface</name>
+    <version>0.1</version>
+    <description>talon SRX hardware interface</description>
+
+    <author  email="ludovicvanasse@gmail.com">Ludovic Vanasse</author>
+    <maintainer email="ludovicvanasse@gmail.com">Ludovic Vanasse</maintainer>
+
+
+    <license>MIT</license>
+
+    <buildtool_depend>catkin</buildtool_depend>
+    <build_depend>hardware_interface</build_depend>
+    <build_depend>roscpp</build_depend>
+
+    <run_depend>hardware_interface</run_depend>
+    <run_depend>roscpp</run_depend>
+
+    <export></export>
+</package>
