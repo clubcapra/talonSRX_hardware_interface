@@ -1,4 +1,4 @@
-project(talonSRX_hardware_interface)
+project(talon_srx_hardware_interface)
 
 cmake_minimum_required(VERSION 3.1)
 add_definitions(-std=c++14)
@@ -10,9 +10,7 @@ find_package(catkin REQUIRED COMPONENTS
 
 catkin_package(
         CATKIN_DEPENDS
-        roscpp
-        hardware_interface
-        pluginlib
+        INCLUDE_DIRS include
 )
 
 
@@ -22,7 +20,7 @@ include_directories(
 )
 
 add_executable(${PROJECT_NAME}
-        src/talonSRX_hardware_interface.cpp
+        src/talon_srx_hardware_interface.cpp
         )
 
 ## Add cmake target dependencies of the executable

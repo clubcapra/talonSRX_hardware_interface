@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <package format="2">
-    <name>takin_motors</name>
+    <name>talon_srx_hardware_interface</name>
     <version>0.0.1</version>
     <description>
         A ROS node wrapper for communicating with Talon SRX motor controllers over CAN
