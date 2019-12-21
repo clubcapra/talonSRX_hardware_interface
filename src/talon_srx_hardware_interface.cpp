@@ -1,8 +1,9 @@
 //
 // Created by ludovic on 09/11/19.
 //
-#include <talon_srx_hardware.h>
+#include "talon_srx_hardware_interface/talon_srx_hardware.h"
 
-namespace talonSRX_hardware_interface {
+using namespace talon_srx_hardware_interface;
 
+bool init(ros::NodeHandle &nh){
 }
