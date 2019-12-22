@@ -25,8 +25,8 @@ public:
   bool init(ros::NodeHandle &nh);
 
 private:
-  std::unique_ptr<TalonSRX> left_tracks;
-  std::unique_ptr<TalonSRX> right_tracks;
+  std::unique_ptr<TalonSRX> left_track;
+  std::unique_ptr<TalonSRX> right_track;
 };
 }  // namespace talon_srx_hardware_interface
 

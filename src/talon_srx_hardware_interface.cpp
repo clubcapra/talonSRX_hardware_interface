@@ -7,3 +7,5 @@ using namespace talon_srx_hardware_interface;
 
 bool init(ros::NodeHandle &nh){
 }
+
+void read()
