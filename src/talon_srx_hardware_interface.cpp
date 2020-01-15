@@ -3,9 +3,9 @@
 //
 #include "talon_srx_hardware_interface/talon_srx_hardware.h"
 
-using namespace talon_srx_hardware_interface;
+namespace talon_srx_hardware_interface {
+    bool init(ros::NodeHandle &nh, int id) {
 
-bool init(ros::NodeHandle &nh){
-}
+    }
 
-void read()
+};

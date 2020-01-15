@@ -1,0 +1,8 @@
+//
+// Created by ludovic on 1/14/20.
+//
+
+#ifndef SRC_TALON_SRX_HARDWARE_INTERFACE_H
+#define SRC_TALON_SRX_HARDWARE_INTERFACE_H
+
+#endif //SRC_TALON_SRX_HARDWARE_INTERFACE_H

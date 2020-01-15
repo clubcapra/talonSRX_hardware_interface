@@ -1,0 +1,11 @@
+<launch>
+    <rosparam file="$(find talon_srx_hardware_interface)/config/hardware.yaml" command="load"/>
+    <rosparam file="$(find talon_srx_hardware_interface)/config/controllers.yaml" command="load"/>
+
+    <node name="talon_srx_hardware_interface" pkg="talon_srx_hardware_interface" type="talon_srx_hardware_interface" output="screen"/>
+    <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" ns="/"
+          args="
+            /markhor/controller/state
+            /markhor/controller/velocity/flipper_velocity_joint
+        "/>
+</launch>
