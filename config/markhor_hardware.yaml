@@ -1,6 +1,5 @@
 markhor:
   hardware_interface:
-    loop_hz: 10
     joints:
       - front_left_flipper_joint
       - front_right_flipper_joint

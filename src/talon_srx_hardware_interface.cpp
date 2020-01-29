@@ -3,91 +3,28 @@
 //
 
 #include "talon_srx_hardware_interface/talon_srx_hardware_interface.h"
-#include <joint_limits_interface/joint_limits_interface.h>
-#include <joint_limits_interface/joint_limits.h>
-#include <joint_limits_interface/joint_limits_urdf.h>
-#include <joint_limits_interface/joint_limits_rosparam.h>
-
 
 namespace talon_srx_hardware_interface {
-    // TODO : Do I really need those?
-    using joint_limits_interface::JointLimits;
-    using joint_limits_interface::SoftJointLimits;
-    using joint_limits_interface::PositionJointSoftLimitsHandle;
-    using joint_limits_interface::PositionJointSoftLimitsInterface;
+    void init(ros::NodeHandle &nh) {
+        // Get parameters (joint name, joint type, talonsrx id, etc)\
 
-    talonSRXHardwareInterface::talonSRXHardwareInterface(ros::NodeHandle &nh) : nh_(nh) {
-        init();
-        controller_manager_.reset(new controller_manager::ControllerManager(this, nh_));
-        nh_.param("/markhor/hardware_interface/loop_hz", loop_hz_, 0.1);
-        ros::Duration update_freq = ros::Duration(1.0 / loop_hz_);
-        non_realtime_loop_ = nh_.createTimer(update_freq, &talonSRXHardwareInterface::update, this);
+        // Initialize interface variables
+
+        // Register interfaces
+    }
+}
+    void read(){
+
+//        for (int i = 0; i < num_joints_; i++) {
+//            // TODO read from Markhor object the drive state
+//            // give the information to the joint interface
+//        }
     }
 
-    talonSRXHardwareInterface::~talonSRXHardwareInterface() {}
-
-    void talonSRXHardwareInterface::init() {
-        // Get joint names
-        nh_.getParam("/markhor/hardware_interface/joints", joint_names_);
-        num_joints_ = joint_names_.size();
-
-        // Resize vectors
-        joint_position_.resize(num_joints_);
-        joint_velocity_.resize(num_joints_);
-        joint_effort_.resize(num_joints_);
-        joint_position_command_.resize(num_joints_);
-        joint_velocity_command_.resize(num_joints_);
-        joint_effort_command_.resize(num_joints_);
-
-        // Initialize Controller
-        for (int i = 0; i < num_joints_; i++) {
-            // TODO Add the joint (drive) to the Markhor object
-
-            // Create joint state interface
-            JointStateHandle jointStateHandle(
-                    joint_names_[i],
-                    &joint_position_[i],
-                    &joint_velocity_[i],
-                    &joint_effort_[i]);
-
-            joint_state_interface_.registerHandle(jointStateHandle);
-
-            // Create position joint interface
-            JointHandle jointPositionHandle(jointStateHandle,&joint_position_command_[i]);
-            JointLimits limits;
-            SoftJointLimits softLimits;
-            getJointLimits(joint_names_[i],nh_,limits);
-            PositionJointSoftLimitsHandle jointLimitsHandle(jointPositionHandle,limits,softLimits);
-            positionJointSoftLimitsInterface.registerHandle(jointLimitsHandle);
-            // TODO jointPositionHandle doesn't seem to be the right type
-            //  position_joint_limits_interface_.registerHandle(jointPositionHandle);
-
-            // Create effort joint interface
-            JointHandle jointEffortHandle(jointStateHandle,&joint_effort_command_[i]);
-            effort_joint_interface_.registerHandle(jointEffortHandle);
-        }
-        registerInterface(&joint_state_interface_);
-        registerInterface(&position_joint_interface_);
-        registerInterface(&effort_joint_interface_);
-        registerInterface(&positionJointSoftLimitsInterface);
-    }
-
-    void talonSRXHardwareInterface::update(const ros::TimerEvent &e) {
-        elapsed_time_ = ros::Duration(e.current_real - e.last_real);
-        read();
-        controller_manager_->update(ros::Time::now(),elapsed_time_);
-        write(elapsed_time_);
-    }
-    void talonSRXHardwareInterface::read(){
-        for (int i = 0; i < num_joints_; i++) {
-            // TODO read from Markhor object the drive state joint_position_[i]
-        }
-    }
-
-    void talonSRXHardwareInterface::write(ros::Duration elapsed_time){
-        positionJointSoftLimitsInterface.enforceLimits(elapsed_time);
-        for (int i = 0; i < num_joints_; i++) {
-            // send command to the motor using join_velocity_command_[i]
-        }
+    void write(ros::Duration elapsed_time){
+        // Get value from controller interfaces
+//        for (int i = 0; i < num_joints_; i++) {
+//            // send command to the motor using join_velocity_command_[i]
+//        }
     }
 };

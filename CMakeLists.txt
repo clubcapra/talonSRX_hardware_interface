@@ -20,7 +20,7 @@ include_directories(
 
 add_library(${PROJECT_NAME}
         src/talon_srx_hardware_interface.cpp
-        src/talon_srx_hardware_interface_node.cpp)
+        )
 
 add_compile_options(
         ${PROJECT_NAME} PRIVATE -Wall cxx_std_14
