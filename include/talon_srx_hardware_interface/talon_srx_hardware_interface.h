@@ -20,6 +20,10 @@
 #include <vector>
 #include <string>
 
+
+// Robot variable
+const int8_t MOTOR_COUNT = 4;// TODO Change it so it loads from a config file.
+
 namespace talon_srx_hardware_interface {
     class talonSRXHardwareInterface : public hardware_interface::RobotHW {
     public:
@@ -31,16 +35,19 @@ namespace talon_srx_hardware_interface {
         void write(const ros::Time &time, const ros::Duration &period);
 
         // Interface variables
-        std::string name_;
-        double cmd_;
-        double pos_;
-        double vel_;
-        double eff_;
-
+        std::vector<std::string> motors_name = {"drive_FL", "drive_FR", "drive_RL",
+                                                "drive_RR"}; // TODO Change it so it loads from a config file.
+        int FL = 0, FR = 0, RL = 0, RR = 0;
+        double cmd[MOTOR_COUNT];
+        double pos[MOTOR_COUNT];
+        double vel[MOTOR_COUNT];
+        double eff[MOTOR_COUNT];
     private:
         // Variables
-        hardware_interface::VelocityJointInterface joint_velocity_interface_;
-        hardware_interface::JointStateInterface joint_state_interface_;
+        hardware_interface::VelocityJointInterface joint_velocity_interface;
+        hardware_interface::JointStateInterface joint_state_interface;
+        std::vector<std::shared_ptr<TalonSRX>> left_track;
+        std::vector<std::shared_ptr<TalonSRX>> right_track;
     };
 }
 #endif //SRC_TALON_SRX_HARDWARE_INTERFACE_H
