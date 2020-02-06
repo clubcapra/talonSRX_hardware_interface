@@ -14,7 +14,6 @@
 
     <depend>roscpp</depend>
     <depend>hardware_interface</depend>
-    <depend>pluginlib</depend>
 
     <export>
         <hardware_interface plugin="${prefix}/talonSRX_plugin.xml"/>

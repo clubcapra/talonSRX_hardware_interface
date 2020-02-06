@@ -20,7 +20,11 @@ include_directories(
 
 add_library(${PROJECT_NAME}
         src/talon_srx_hardware_interface.cpp
-        )
+)
+install(DIRECTORY include/${PROJECT_NAME}/
+        DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
+        FILES_MATCHING PATTERN "*.h"
+        PATTERN ".svn" EXCLUDE)
 
 add_compile_options(
         ${PROJECT_NAME} PRIVATE -Wall cxx_std_14
