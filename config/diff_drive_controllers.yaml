@@ -20,7 +20,7 @@ markhor:
         type: position_controller/JointPositionController
         joint: 'rear_right_flipper_joint'
         pid: {p: 10.0, i: 0.0, d: 1.0}
-  velocity_controller:
+  markhor_diff_drive_controller:
     type: "diff_drive_controller/DriffDriveController"
     left_wheel : 'left_track_joint'
     right_wheel : 'right_track_joint'
