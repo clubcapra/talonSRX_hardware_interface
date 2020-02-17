@@ -52,3 +52,4 @@ void talonSRXHardwareInterface::write(const ros::Time &time, const ros::Duration
 }
 
 }  // namespace talon_srx_hardware_interface
+PLUGINLIB_EXPORT_CLASS(talon_srx_hardware_interface::talonSRXHardwareInterface, hardware_interface::RobotHW);
