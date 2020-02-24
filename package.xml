@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0" ?>
 <package format="2">
     <name>talon_srx_hardware_interface</name>
     <version>0.0.1</version>
@@ -16,6 +16,6 @@
     <depend>hardware_interface</depend>
 
     <export>
-        <hardware_interface plugin="${prefix}/talonSRX_plugin.xml"/>
+        <hardware_interface plugin="${prefix}/talon_srx_hwi_plugin.xml" />
     </export>
 </package>
