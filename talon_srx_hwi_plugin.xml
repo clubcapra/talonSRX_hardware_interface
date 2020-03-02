@@ -1,5 +1,5 @@
 <library path="lib/libtalon_srx_hardware_interface">
-    <class name="talonSRXHardwareInterface" type="talon_srx_hardware_interface::talonSRXHardwareInterface" base_class_type="hardware_interface::RobotHW">
+    <class name="talon_srx_hardware_interface/talonSRXHardwareInterface" type="talon_srx_hardware_interface::talonSRXHardwareInterface" base_class_type="hardware_interface::RobotHW">
         <description>Talon SRX Hardware interface</description>
     </class>
 </library>
