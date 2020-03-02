@@ -8,7 +8,6 @@ namespace talon_srx_hardware_interface
 {
 bool talonSRXHardwareInterface::init(ros::NodeHandle &hw_nh)
 {
-  ROS_INFO("TEST READ");
   // Get parameters (joint name, joint type, talonsrx id, etc)
   // Get parameters
   std::vector<std::string> Joints;
@@ -27,12 +26,15 @@ bool talonSRXHardwareInterface::init(ros::NodeHandle &hw_nh)
   hardware_interface::JointStateHandle state_handle(this->motors_name, &pos, &vel, &eff);
   this->joint_state_interface.registerHandle(state_handle);
 
+  // TODO : needs to be a velocity joint interface
   hardware_interface::JointHandle vel_handle(joint_state_interface.getHandle(this->motors_name), &cmd);
-  joint_velocity_interface.registerHandle(vel_handle);
+  this->joint_velocity_interface.registerHandle(vel_handle);
 
   // Register interfaces
   registerInterface(&joint_state_interface);
   registerInterface(&joint_velocity_interface);
+
+  return true;
 }  // namespace talon_srx_hardware_interface
 
 void talonSRXHardwareInterface::read(const ros::Time &time, const ros::Duration &period)
