@@ -1,15 +1,22 @@
 //
 // Created by ludovic on 09/11/19.
 //
-
+#include "hardware_interface/internal/interface_manager.h"
 #include "talon_srx_hardware_interface/talon_srx_hardware_interface.h"
-
 namespace talon_srx_hardware_interface
 {
+talonSRXHardwareInterface::talonSRXHardwareInterface()
+{
+}
+
+talonSRXHardwareInterface::~talonSRXHardwareInterface()
+{
+}
+
 bool talonSRXHardwareInterface::init(ros::NodeHandle &hw_nh)
 {
+  using namespace hardware_interface;
   // Get parameters (joint name, joint type, talonsrx id, etc)
-  // Get parameters
   std::vector<std::string> Joints;
   if (!hw_nh.getParam("joints", Joints))
   {
@@ -23,19 +30,18 @@ bool talonSRXHardwareInterface::init(ros::NodeHandle &hw_nh)
   this->cmd = 0.0;
 
   // Initialize interface variables
-  hardware_interface::JointStateHandle state_handle(this->motors_name, &pos, &vel, &eff);
-  this->joint_state_interface.registerHandle(state_handle);
+  JointStateHandle state_handle(motors_name, &pos, &vel, &eff);
+  joint_state_interface.registerHandle(state_handle);
 
-  // TODO : needs to be a velocity joint interface
-  hardware_interface::JointHandle vel_handle(joint_state_interface.getHandle(this->motors_name), &cmd);
-  this->joint_velocity_interface.registerHandle(vel_handle);
+  JointHandle vel_handle(velocity_joint_interface.getHandle(motors_name), &cmd);
+  velocity_joint_interface.registerHandle(vel_handle);
 
   // Register interfaces
+  registerInterface(&velocity_joint_interface);
   registerInterface(&joint_state_interface);
-  registerInterface(&joint_velocity_interface);
 
   return true;
-}  // namespace talon_srx_hardware_interface
+}
 
 void talonSRXHardwareInterface::read(const ros::Time &time, const ros::Duration &period)
 {

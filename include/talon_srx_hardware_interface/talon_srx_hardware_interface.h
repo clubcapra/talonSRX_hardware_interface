@@ -12,6 +12,7 @@
 // ROS includes
 #include <hardware_interface/joint_command_interface.h>
 #include <hardware_interface/joint_state_interface.h>
+#include <hardware_interface/robot_hw.h>
 #include <pluginlib/class_list_macros.h>
 #include "geometry_msgs/Twist.h"
 #include "hardware_interface/robot_hw.h"
@@ -26,6 +27,9 @@ class talonSRXHardwareInterface : public hardware_interface::RobotHW
 {
 public:
   // Functions
+  talonSRXHardwareInterface();
+  ~talonSRXHardwareInterface();
+
   bool init(ros::NodeHandle &robot_hw_nh);
 
   void read(const ros::Time &time, const ros::Duration &period);
@@ -42,8 +46,8 @@ public:
 
 private:
   // Variables
-  hardware_interface::VelocityJointInterface joint_velocity_interface;
   hardware_interface::JointStateInterface joint_state_interface;
+  hardware_interface::VelocityJointInterface velocity_joint_interface;
   std::vector<std::shared_ptr<TalonSRX>> motor_track;
 };
 }  // namespace talon_srx_hardware_interface
